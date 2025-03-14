@@ -1,0 +1,20 @@
+/* Đặt nền với gradient cho toàn bộ các trang */
+body {
+    background: linear-gradient(45deg, #FFB6C1, #FFC0CB);
+}
+
+/* Card đăng nhập và đăng ký */
+.card {
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+/* Các ô input tròn */
+input.form-control {
+    border-radius: 20px;
+}
+
+/* Nút bấm tròn */
+button.btn {
+    border-radius: 20px;
+}

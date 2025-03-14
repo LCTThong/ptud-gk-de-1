@@ -1,0 +1,92 @@
+{% extends "posts_div.html" %} 
+
+{% block title %}Thông's Posts{% endblock %} 
+
+{% block header %}
+<div class="text-center mt-4">
+  <img src="https://picsum.photos/100" alt="User Avatar" class="rounded-circle mb-3">
+  <h3 class="text-uppercase text-primary">Thông's Posts</h3>
+</div>
+{% endblock %} 
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    {% for post in posts %}
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card shadow-lg border-light" style="border-radius: 20px; transition: transform 0.3s ease;">
+        <div class="card-body">
+          <h5 class="card-title text-primary">{{ post.title }}</h5>
+          <p class="card-text text-muted">{{ post.content[:150] }}...</p>
+          <div class="d-flex justify-content-between">
+            <small class="text-muted">Posted on {{ post.date }}</small>
+            <a href="#" class="btn btn-outline-primary btn-sm">
+              <i class="fas fa-eye"></i> View
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<div class="text-center my-4">
+  <a href="/home">
+    <button type="button" class="btn btn-outline-primary btn-lg">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </button>
+  </a>
+</div>
+{% endblock %}
+
+<style>
+  .card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    color: #6c757d;
+  }
+
+  .btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+  }
+
+  .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .row {
+    margin-top: 20px;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .container {
+    max-width: 1200px;
+  }
+
+  h3 {
+    font-size: 2.2rem;
+    font-weight: bold;
+  }
+</style>

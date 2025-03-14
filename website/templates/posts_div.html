@@ -1,0 +1,107 @@
+{% extends "base.html" %} 
+
+{% block title %}Home{% endblock %} 
+
+{% block content %}
+  <h1 align="center" class="mt-4">{% block header %}Posts{% endblock %}</h1>
+  
+  <div class="container">
+    <div class="row" id="posts">
+      {% for post in posts %}
+      <div class="col-md-4 mb-4 post-item" style="display: none; opacity: 0; transform: translateY(20px); transition: all 0.5s ease-in-out;">
+        <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
+          <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white">
+            <a href="/posts/{{ post.user.username }}" class="text-white text-decoration-none">{{ post.user.username }}</a>
+            {% if user.id == post.author %}
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown"></button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="javascript:void(0);" class="dropdown-item text-danger" onclick="deleteSelectedItems('post', ['{{ post.id }}'])">Delete</a>
+                </li>
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Ảnh bài viết -->
+          <img src="https://picsum.photos/seed/{{ post.id }}/600/300" class="card-img-top rounded-bottom" alt="Random Image">
+
+          <div class="card-body">
+            <p class="card-text">{{ post.text }}</p>
+            <p class="text-muted small">Ngày đăng: {{ post.date_created }}</p>
+            
+            <!-- Xem bình luận -->
+            {% if post.comments|length > 0 %}
+            <a data-bs-toggle="collapse" href="#comments-{{ post.id }}" role="button" class="text-primary small">
+              View {{ post.comments|length }} Comments
+            </a>
+            {% else %}
+            <small class="text-muted">No Comments</small>
+            {% endif %}
+            
+            <div class="collapse mt-2" id="comments-{{ post.id }}">
+              <div class="card card-body bg-light">
+                {% for comment in post.comments %}
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <div>
+                    <a href="/posts/{{ comment.user.username }}" class="text-decoration-none fw-bold">{{ comment.user.username }}</a>: 
+                    {{ comment.text }}
+                  </div>
+                  <small class="text-muted">{{ comment.date_created }}</small>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Bình luận -->
+          <form class="input-group p-2" method="POST" action="/create-comment/{{ post.id }}">
+            <input type="text" name="text" class="form-control rounded-start" placeholder="Comment something!" />
+            <button type="submit" class="btn btn-primary">Comment</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <button id="load-more-btn" class="btn btn-primary px-4 py-2">Tải thêm</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let posts = document.querySelectorAll(".post-item");
+        let currentPostIndex = 0;
+        let postsPerPage = 6;
+
+        function showNextPosts() {
+            for (let i = currentPostIndex; i < currentPostIndex + postsPerPage && i < posts.length; i++) {
+                let post = posts[i];
+                post.style.display = "block";
+                setTimeout(() => {
+                    post.style.opacity = 1;
+                    post.style.transform = "translateY(0)";
+                }, 50);
+            }
+            currentPostIndex += postsPerPage;
+            if (currentPostIndex >= posts.length) {
+                document.getElementById("load-more-btn").style.display = "none";
+            }
+        }
+
+        showNextPosts();
+        document.getElementById("load-more-btn").addEventListener("click", showNextPosts);
+    });
+  </script>
+
+  {% block footer %}
+  <div class="text-center mt-4">
+    <a href="/create-post">
+      <button type="button" class="btn btn-success btn-lg px-5 py-3 shadow">Create a Post</button>
+    </a>
+  </div>
+  {% endblock %} 
+
+{% endblock %}

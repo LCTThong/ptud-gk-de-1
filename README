@@ -1,0 +1,89 @@
+# ptud-gk-de-1
+
+Đây là project Blog được xây dựng theo đề bài cho môn PTUD-GK, bao gồm hai tác nhân (actor và user) với chức năng bình luận (comment). Các bài viết trên blog hiển thị hình ảnh ngẫu nhiên từ [Picsum](https://picsum.photos/). Giao diện sử dụng layout **Single Column** (một cột) và có thêm trang dashboard để thể hiện thông tin trang blog của mình.
+
+## Thông tin cá nhân
+
+- **Họ và tên:** Trương Đăng Thông
+- **MSSV:** 22667231
+- **Email:** tdthong.a2.c3tqcap@gmail.com
+- **Tên github: ** LCTThong
+
+## Tính năng chính
+
+- **Đăng nhập/Đăng ký:** Người dùng có thể đăng nhập, đăng ký tài khoản.
+- **Đăng bài viết:** Actor có thể tạo, chỉnh sửa và xóa bài viết.
+- **Bình luận:** Cả actor và user đều có thể bình luận trên các bài viết.
+- **Hiển thị hình ảnh:** Mỗi bài viết hiển thị hình ảnh ngẫu nhiên được lấy từ [Picsum](https://picsum.photos/).
+- **Giao diện:** Layout Single Column, tối giản và hiện đại.
+- **Dashboard:** Trang dashboard hiển thị thông tin cơ bản của blog (số bài viết, số bình luận, thông tin tác giả, ...).
+
+## Yêu cầu cài đặt
+
+- Python 3.7 trở lên
+- Virtualenv (khuyến nghị)
+
+## Cài đặt và chạy project
+
+### 1. Clone repository
+
+Mở terminal và chạy lệnh sau:
+
+```bash
+git clone https://github.com/yourusername/ptud-gk-de-1.git
+cd ptud-gk-de-1
+2. Tạo môi trường ảo
+Sử dụng virtualenv (hoặc venv) để tạo môi trường ảo:
+
+bash
+
+python -m venv venv
+Kích hoạt môi trường ảo:
+
+Trên Windows:
+
+bash
+
+venv\Scripts\activate
+Trên macOS/Linux:
+
+bash
+source venv/bin/activate
+3. Cài đặt các package cần thiết
+Cài đặt các thư viện yêu cầu từ file requirements.txt:
+
+bash
+
+pip install -r requirements.txt
+4. Thiết lập biến môi trường
+Tạo file .env (nếu sử dụng Flask-Dotenv) hoặc thiết lập trực tiếp các biến môi trường:
+
+bash
+
+# Ví dụ:
+FLASK_APP=run.py
+FLASK_ENV=development
+SECRET_KEY=your_secret_key_here
+5. Khởi tạo cơ sở dữ liệu
+Nếu project sử dụng SQLAlchemy, bạn có thể chạy script khởi tạo cơ sở dữ liệu (chẳng hạn create_db.py):
+
+bash
+
+python create_db.py
+Lệnh này sẽ tạo cơ sở dữ liệu nếu chưa tồn tại.
+
+6. Chạy ứng dụng
+Sau khi đã cài đặt xong, chạy ứng dụng bằng lệnh:
+
+bash
+
+flask run
+Ứng dụng sẽ chạy trên địa chỉ http://127.0.0.1:5000.
+
+Dashboard
+Trang dashboard (dashboard.html) hiển thị các thông tin thống kê của blog như:
+
+Số bài viết
+Số bình luận
+Thông tin tác giả và blog
+Đây là một trong các chức năng bổ sung được thực hiện để nâng cao tính năng của project.

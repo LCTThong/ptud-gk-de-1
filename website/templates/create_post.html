@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+{% block title %}Create Post{% endblock %} 
+
+{% block content %}
+  <div class="container d-flex flex-column align-items-center mt-5">
+    <h2 class="mb-4 text-primary">✍️ Create a New Post</h2>
+    
+    <!-- Flash Messages -->
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show" role="alert">
+                        <i class="fas fa-info-circle"></i> {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="card shadow-lg p-4" style="width: 50rem; max-width: 90%;">
+      <form method="POST">
+        <div class="mb-3">
+          <textarea name="text" id="text" class="form-control" rows="5" placeholder="What's on your mind? 🤔" style="resize: none; border-radius: 10px;" required></textarea>
+        </div>
+        
+        <div class="d-flex justify-content-between">
+          <a href="/home" class="btn btn-secondary px-4 py-2">⬅️ Back</a>
+          <button type="submit" class="btn btn-primary px-4 py-2">🚀 Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
