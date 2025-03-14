@@ -8,7 +8,11 @@
 - **MSSV:** 22667231
 - **Email:** tdthong.a2.c3tqcap@gmail.com
 - **Tên github: ** LCTThong
+Sử dụng Git để clone dự án về máy:
 
+```bash
+git clone https://github.com/username/repo-name.git
+cd repo-name
 ## Tính năng chính
 
 - **Đăng nhập/Đăng ký:** Người dùng có thể đăng nhập, đăng ký tài khoản.
